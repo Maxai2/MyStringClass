@@ -14,7 +14,7 @@ public:
 	//Конструктор копирования
 	MyString(const MyString &str);
 	//Деструктор
-	~MyString();
+	~MyString() {}
 
 	//Длинна строки
 	int length();
