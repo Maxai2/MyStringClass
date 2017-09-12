@@ -6,16 +6,16 @@ using namespace std;
 class MyString
 {
 	char* symbols;
-	int length = 0;
+	int _length = 0;
 
 public:
 	MyString();
 	MyString(char *str);
 	MyString(string str);
 	//Конструктор копирования
-	MyString(const MyString &str);
+	MyString(MyString &str);
 	//Деструктор
-	~MyString() {}
+	~MyString() { delete[] symbols; }
 
 	//Длинна строки
 	int length();
@@ -28,13 +28,13 @@ public:
 	//Обменять значения двух строк
 	void swap(MyString &str);
 	//Вставить подстроку по индексу
-	void insert(int index, const MyString str);
+	void insert(int index, MyString str);
 	//Удалить символы
 	void erase(int start, int count);
 	//Заменить символы
-	void replace(int start, int finish, const MyString str);
+	void replace(int start, int finish, MyString str);
 	//Найти подстроку в строке и вернуть ее индекс
-	int find(const MyString str);
+	int find(MyString str);
 };
 
 void main()
