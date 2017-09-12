@@ -1,6 +1,6 @@
-#pragma once
-#include <iostream>
+п»ї#include <iostream>
 #include <string>
+using namespace std;
 
 class MyString
 {
@@ -10,28 +10,35 @@ class MyString
 public:
 	MyString();
 	MyString(char *str);
-	MyString(std::string str);
-	//Конструктор копирования
-	MyString(MyString &str);
-	//Деструктор
-	~MyString() {};
+	MyString(string str);
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
+	MyString(const MyString &str);
+	//Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
+	~MyString();
 
-	//Длинна строки
+	//Р”Р»РёРЅРЅР° СЃС‚СЂРѕРєРё
 	int length();
-	//Очистить строку
+	//РћС‡РёСЃС‚РёС‚СЊ СЃС‚СЂРѕРєСѓ
 	void clear();
-	//Пустая ли строка
+	//РџСѓСЃС‚Р°СЏ Р»Рё СЃС‚СЂРѕРєР°
 	bool empty();
-	//Вернуть char массив
+	//Р’РµСЂРЅСѓС‚СЊ char РјР°СЃСЃРёРІ
 	char* c_str();
-	//Обменять значения двух строк
+	//РћР±РјРµРЅСЏС‚СЊ Р·РЅР°С‡РµРЅРёСЏ РґРІСѓС… СЃС‚СЂРѕРє
 	void swap(MyString &str);
-	//Вставить подстроку по индексу
-	void insert(int index, MyString str);
-	//Удалить символы
+	//Р’СЃС‚Р°РІРёС‚СЊ РїРѕРґСЃС‚СЂРѕРєСѓ РїРѕ РёРЅРґРµРєСЃСѓ
+	void insert(int index, const MyString str);
+	//РЈРґР°Р»РёС‚СЊ СЃРёРјРІРѕР»С‹
 	void erase(int start, int count);
-	//Заменить символы
-	void replace(int start, int finish, MyString str);
-	//Найти подстроку в строке и вернуть ее индекс
-	int find(MyString str);
+	//Р—Р°РјРµРЅРёС‚СЊ СЃРёРјРІРѕР»С‹
+	void replace(int start, int finish, const MyString str);
+	//РќР°Р№С‚Рё РїРѕРґСЃС‚СЂРѕРєСѓ РІ СЃС‚СЂРѕРєРµ Рё РІРµСЂРЅСѓС‚СЊ РµРµ РёРЅРґРµРєСЃ
+	int find(const MyString str);
 };
+
+void main()
+{
+	MyString str;
+	MyString str2("text");
+	MyString str3 = str2;
+}
