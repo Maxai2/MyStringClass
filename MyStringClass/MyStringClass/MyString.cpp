@@ -12,16 +12,17 @@ MyString::MyString(char * str)
 	while (str[index] != '\0') { index++; }
 	
 	memcpy(this->symbols, str, sizeof(char) * index);
-
-	delete 
 }
 
 MyString::MyString(string str)
 {
+	string *p = &str;
+
 }
 
 MyString::MyString( MyString & str)
 {
+	*this->symbols = *str;
 }
 
 int MyString::length()
@@ -35,11 +36,15 @@ int MyString::length()
 
 void MyString::clear()
 {
+
 }
 
 bool MyString::empty()
 {
-	return false;
+	if (this->symbols.length() == 0)
+		return true;
+	else
+		return false;
 }
 
 char * MyString::c_str()
@@ -49,18 +54,22 @@ char * MyString::c_str()
 
 void MyString::swap(MyString & str)
 {
+	
 }
 
 void MyString::insert(int index, MyString str)
 {
+
 }
 
 void MyString::erase(int start, int count)
 {
+
 }
 
 void MyString::replace(int start, int finish, MyString str)
 {
+
 }
 
 int MyString::find(MyString str)
