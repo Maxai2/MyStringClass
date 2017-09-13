@@ -47,4 +47,5 @@ public:
 	friend bool operator<(const MyString &t1, const MyString &t2);
 	friend bool operator>=(const MyString &t1, const MyString &t2);
 	friend bool operator<=(const MyString &t1, const MyString &t2);
+	friend char operator[](const MyString &t);
 };

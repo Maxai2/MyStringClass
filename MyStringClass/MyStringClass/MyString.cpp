@@ -313,7 +313,10 @@ bool operator>=(const MyString &t1, const MyString &t2)
 	bool check = true;
 	for (int i = 0; i < size || check; i++)
 	{
-		if (t1.symbols[i] < t2.symbols[i])
+		if (t1.symbols[i] > t2.symbols[i] || t1.symbols[i] == t2.symbols[i])
+			continue;
+		else
+		if (t1.symbols[i] < t2.symbols[i] || t1.symbols[i] != t2.symbols[i])
 			check = false;
 	}
 
@@ -325,6 +328,10 @@ bool operator>=(const MyString &t1, const MyString &t2)
 
 bool operator<=(const MyString & t1, const MyString & t2)
 {
+	return !(t1 >= t2);
+}
 
-	return false;
+char operator[](const MyString &t)
+{
+
 }
