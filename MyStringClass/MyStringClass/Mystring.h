@@ -39,13 +39,26 @@ public:
 	friend MyString operator+(const MyString &t1, const MyString &t2);
 	friend MyString operator+(const MyString &t1, const char *t2);
 	friend MyString operator+(const char *t2, const MyString &t1);
-	friend istream& operator>>(istream& in, MyString &t1);
-	friend ostream& operator<<(ostream& out, MyString &t1);
+	friend istream& operator>>(istream& in, MyString &t);
+	friend ostream& operator<<(ostream& out, MyString &t);
 	friend bool operator==(const MyString &t1, const MyString &t2);
 	friend bool operator!=(const MyString &t1, const MyString &t2);
 	friend bool operator>(const MyString &t1, const MyString &t2);
 	friend bool operator<(const MyString &t1, const MyString &t2);
 	friend bool operator>=(const MyString &t1, const MyString &t2);
 	friend bool operator<=(const MyString &t1, const MyString &t2);
-	friend char operator[](const MyString &t);
+	
+	char& operator[](const int index)
+	{
+		return this->symbols[index];
+	}
+
+	MyString& operator=(const MyString &str)
+	{
+		this->_length = str._length;
+		delete[] this->symbols;
+		this->symbols = new char[str._length + 1];
+		strcpy(this->symbols, str.symbols);
+		return *this;
+	}
 };

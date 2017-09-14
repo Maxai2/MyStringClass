@@ -224,23 +224,21 @@ MyString operator+(const char *t2, const MyString &t1)
 	return MyString(temp);
 }
 
-istream& operator>>(istream& in, MyString &t1)
+istream& operator>>(istream& in, MyString &t)
 {
-	int size = t1._length + 1;
-	char *temp = new char[size];
-
-	in.getline(temp, size);
-
-	for (int i = 0; i < size; i++)
-		t1.symbols[i] = temp[i];
-
-	t1._length = size - 1;
+	char* temp = new char[1000];
+	cin.getline(temp, 1000);
+	int len = strlen(temp);
+	t._length = len;
+	t.symbols = new char[len + 1];
+	strcpy(t.symbols, temp);
+	delete[] temp;
 	return in;
 }
 
-ostream& operator<<(ostream& out, MyString &t1)
+ostream& operator<<(ostream& out, MyString &t)
 {
-	out << t1.symbols;
+	out << t.symbols;
 
 	return out;
 }
@@ -329,9 +327,4 @@ bool operator>=(const MyString &t1, const MyString &t2)
 bool operator<=(const MyString & t1, const MyString & t2)
 {
 	return !(t1 >= t2);
-}
-
-char operator[](const MyString &t)
-{
-
 }
