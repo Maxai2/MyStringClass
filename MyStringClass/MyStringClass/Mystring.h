@@ -35,11 +35,17 @@ public:
 	void replace(int start, int finish, MyString str);
 	//Найти подстроку в строке и вернуть ее индекс
 	int find(MyString str);
-};
 
-void main()
-{
-	MyString str;
-	MyString str2("text");
-	MyString str3 = str2;
-}
+	friend MyString operator+(const MyString &t1, const MyString &t2);
+	friend MyString operator+(const MyString &t1, const char *t2);
+	friend MyString operator+(const char *t2, const MyString &t1);
+	friend istream& operator>>(istream& in, MyString &t1);
+	friend ostream& operator<<(ostream& out, MyString &t1);
+	friend bool operator==(const MyString &t1, const MyString &t2);
+	friend bool operator!=(const MyString &t1, const MyString &t2);
+	friend bool operator>(const MyString &t1, const MyString &t2);
+	friend bool operator<(const MyString &t1, const MyString &t2);
+	friend bool operator>=(const MyString &t1, const MyString &t2);
+	friend bool operator<=(const MyString &t1, const MyString &t2);
+	friend char operator[](const MyString &t);
+};

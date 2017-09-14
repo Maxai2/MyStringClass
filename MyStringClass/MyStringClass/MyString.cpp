@@ -10,7 +10,8 @@ MyString::MyString(char * str)
 	int index = 0;
 
 	while (str[index++] != '\0') {}
-	
+
+	this->symbols = new char[index];
 	memcpy(this->symbols, str, sizeof(char) * index);
 	index--;
 	this->_length = index;
@@ -39,15 +40,15 @@ int MyString::length()
 {
 	int index = 0;
 
-	while (this->symbols[index] != '\0') {index++;}
-	
+	while (this->symbols[index] != '\0') { index++; }
+
 	return index;
 }
 
 void MyString::clear()
 {
 	delete[] this->symbols;
-	
+
 	this->_length = 0;
 	this->symbols = new char[this->_length];
 }
@@ -67,7 +68,7 @@ char * MyString::c_str()
 
 void MyString::swap(MyString & str)
 {
-//	int buffer = 0;
+	//	int buffer = 0;
 	char *temp = nullptr;
 	temp = this->symbols;
 	this->symbols = str.symbols;
@@ -162,4 +163,175 @@ int MyString::find(MyString str)
 	}
 
 	return 0;
+}
+
+MyString operator+(const MyString &t1, const MyString &t2)
+{
+	int size = t1._length + t2._length + 1;
+	int counter = 0;
+	char *temp = new char[size];
+
+	for (int i = 0; i < t1._length; i++, counter++)
+		temp[counter] = t1.symbols[i];
+
+	for (int i = 0; i < t2._length; i++, counter++)
+		temp[counter] = t2.symbols[i];
+
+	temp[size] = '\0';
+
+	return MyString(temp);
+}
+
+MyString operator+(const MyString &t1, const char *t2)
+{
+	int index = 0;
+
+	while (t2[index++] != '\0') {}
+
+	int size = t1._length + index + 1, counter = 0;
+
+	char *temp = new char[size];
+
+	for (int i = 0; i < t1._length; i++, counter++)
+		temp[counter] = t1.symbols[i];
+
+	for (int i = 0; i < index; i++, counter++)
+		temp[counter] = t2[i];
+
+	temp[size] = '\0';
+
+	return MyString(temp);
+}
+
+MyString operator+(const char *t2, const MyString &t1)
+{
+	int index = 0;
+
+	while (t2[index++] != '\0') {}
+
+	int size = t1._length + index + 1, counter = 0;
+
+	char *temp = new char[size];
+
+	for (int i = 0; i < index; i++, counter++)
+		temp[counter] = t2[i];
+
+	for (int i = 0; i < t1._length; i++, counter++)
+		temp[counter] = t1.symbols[i];
+
+	temp[size] = '\0';
+
+	return MyString(temp);
+}
+
+istream& operator>>(istream& in, MyString &t1)
+{
+	int size = t1._length + 1;
+	char *temp = new char[size];
+
+	in.getline(temp, size);
+
+	for (int i = 0; i < size; i++)
+		t1.symbols[i] = temp[i];
+
+	t1._length = size - 1;
+	return in;
+}
+
+ostream& operator<<(ostream& out, MyString &t1)
+{
+	out << t1.symbols;
+
+	return out;
+}
+
+bool operator==(const MyString &t1, const MyString &t2)
+{
+	int size = 0;
+	if (t1._length <= t2._length)
+		size = t1._length;
+	else
+		if (t1._length > t2._length)
+			size = t2._length;
+
+	bool check = true;
+	for (int i = 0; i < size || check; i++)
+	{
+		if (t1.symbols[i] != t2.symbols[i])
+			check = false;
+	}
+
+	if (check == true)
+		return false;
+	else
+		return true;
+}
+
+bool operator!=(const MyString &t1, const MyString &t2)
+{
+	return !(t1 == t2);
+}
+
+
+bool operator>(const MyString &t1, const MyString &t2)
+{
+	int size = 0;
+	if (t1._length <= t2._length)
+		size = t1._length;
+	else
+		if (t1._length > t2._length)
+			size = t2._length;
+
+	bool check = true;
+	for (int i = 0; i < size || check; i++)
+	{
+		if (t1.symbols[i] < t2.symbols[i])
+			check = false;
+	}
+
+	if (check == true)
+		return false;
+	else
+		return true;
+}
+
+bool operator<(const MyString &t1, const MyString &t2)
+{
+	return !(t1 > t2);
+}
+
+
+bool operator>=(const MyString &t1, const MyString &t2)
+{
+	int size = 0;
+	if (t1._length <= t2._length)
+		size = t1._length;
+	else
+		if (t1._length > t2._length)
+			size = t2._length;
+
+	bool check = true;
+	for (int i = 0; i < size || check; i++)
+	{
+		if (t1.symbols[i] > t2.symbols[i] || t1.symbols[i] == t2.symbols[i])
+			continue;
+		else
+			if (t1.symbols[i] < t2.symbols[i] || t1.symbols[i] != t2.symbols[i])
+				check = false;
+	}
+
+	if (check == true)
+		return false;
+	else
+		return true;
+}
+
+bool operator<=(const MyString & t1, const MyString & t2)
+{
+	return !(t1 >= t2);
+}
+
+char operator[](const MyString &t)
+{
+
 }
