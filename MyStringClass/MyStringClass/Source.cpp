@@ -14,6 +14,4 @@ void main()
 	cout << "Str2 cleaned!" << endl;
 	cout << str << " " << str2 << " " << str3 << " " << str3.length() << endl;
 	cout << "Check, str2 is empty?" << str2.empty() ? cout << ":yes" << endl : cout << ":no" << endl;
-
-
 }

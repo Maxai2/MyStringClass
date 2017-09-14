@@ -13,8 +13,7 @@ MyString::MyString(char * str)
 
 	this->symbols = new char[index];
 	memcpy(this->symbols, str, sizeof(char) * index);
-	index--;
-	this->_length = index;
+	this->_length = --index;
 }
 
 MyString::MyString(string str)
@@ -228,6 +227,7 @@ istream& operator>>(istream& in, MyString &t)
 {
 	char* temp = new char[1000];
 	cin.getline(temp, 1000);
+	//getline(in, temp)  // string temp
 	int len = strlen(temp);
 	t._length = len;
 	t.symbols = new char[len + 1];
