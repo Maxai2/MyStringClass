@@ -14,6 +14,8 @@ public:
 	MyString(string str);
 	//Конструктор копирования
 	MyString(MyString &str);
+    //Конструктор перемещения
+	MyString(MyString &&str);
 	//Деструктор
 	~MyString() { delete[] symbols; }
 
@@ -48,6 +50,7 @@ public:
 	friend bool operator>=(const MyString &t1, const MyString &t2);
 	friend bool operator<=(const MyString &t1, const MyString &t2);
 	
+
 	char& operator[](const int index)
 	{
 		return this->symbols[index];
@@ -61,4 +64,6 @@ public:
 		strcpy(this->symbols, str.symbols);
 		return *this;
 	}
+
+	MyString operator=(MyString &&t1);
 };

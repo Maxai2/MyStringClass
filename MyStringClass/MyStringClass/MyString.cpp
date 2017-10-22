@@ -1,10 +1,10 @@
 #include "Mystring.h"
-
+//----------------------------------------------------------------------------------------
 MyString::MyString()
 {
 	this->symbols = new char[this->_length];
 }
-
+//----------------------------------------------------------------------------------------
 MyString::MyString(char * str)
 {
 	int index = 0;
@@ -15,7 +15,7 @@ MyString::MyString(char * str)
 	memcpy(this->symbols, str, sizeof(char) * index);
 	this->_length = --index;
 }
-
+//----------------------------------------------------------------------------------------
 MyString::MyString(string str)
 {
 	int index = 0;
@@ -27,14 +27,19 @@ MyString::MyString(string str)
 	index--;
 	this->_length = index;
 }
-
+//----------------------------------------------------------------------------------------
 MyString::MyString(MyString & str)
 {
 	*this->symbols = *str.symbols;
 	this->_length = str._length;
 	memcpy(this->symbols, str.symbols, sizeof(str.symbols));
 }
+//----------------------------------------------------------------------------------------
+MyString::MyString(MyString && str)
+{
 
+}
+//----------------------------------------------------------------------------------------
 int MyString::length()
 {
 	int index = 0;
@@ -43,7 +48,7 @@ int MyString::length()
 
 	return index;
 }
-
+//----------------------------------------------------------------------------------------
 void MyString::clear()
 {
 	delete[] this->symbols;
@@ -51,7 +56,7 @@ void MyString::clear()
 	this->_length = 0;
 	this->symbols = new char[this->_length];
 }
-
+//----------------------------------------------------------------------------------------
 bool MyString::empty()
 {
 	if (_length == 0)
@@ -59,12 +64,12 @@ bool MyString::empty()
 	else
 		return false;
 }
-
+//----------------------------------------------------------------------------------------
 char * MyString::c_str()
 {
 	return this->symbols;
 }
-
+//----------------------------------------------------------------------------------------
 void MyString::swap(MyString & str)
 {
 	//	int buffer = 0;
@@ -81,7 +86,7 @@ void MyString::swap(MyString & str)
 	str._length = this->_length ^ str._length;
 	this->_length = this->_length ^ str._length;
 }
-
+//----------------------------------------------------------------------------------------
 void MyString::insert(int index, MyString str)
 {
 	index--;
@@ -102,7 +107,7 @@ void MyString::insert(int index, MyString str)
 	delete[] this->symbols;
 	this->symbols = temp;
 }
-
+//----------------------------------------------------------------------------------------
 void MyString::erase(int start, int count)
 {
 	start--;
@@ -120,7 +125,7 @@ void MyString::erase(int start, int count)
 	delete[] this->symbols;//
 	this->symbols = temp;
 }
-
+//----------------------------------------------------------------------------------------
 void MyString::replace(int start, int finish, MyString str)
 {
 	start--; finish--;
@@ -141,7 +146,7 @@ void MyString::replace(int start, int finish, MyString str)
 	delete[] this->symbols;
 	this->symbols = temp;
 }
-
+//----------------------------------------------------------------------------------------
 int MyString::find(MyString str)
 {
 	for (int i = 0, counter = 0; i < this->_length; i++)
@@ -163,7 +168,7 @@ int MyString::find(MyString str)
 
 	return 0;
 }
-
+//----------------------------------------------------------------------------------------
 MyString operator+(const MyString &t1, const MyString &t2)
 {
 	int size = t1._length + t2._length + 1;
@@ -180,7 +185,7 @@ MyString operator+(const MyString &t1, const MyString &t2)
 
 	return MyString(temp);
 }
-
+//----------------------------------------------------------------------------------------
 MyString operator+(const MyString &t1, const char *t2)
 {
 	int index = 0;
@@ -201,7 +206,7 @@ MyString operator+(const MyString &t1, const char *t2)
 
 	return MyString(temp);
 }
-
+//----------------------------------------------------------------------------------------
 MyString operator+(const char *t2, const MyString &t1)
 {
 	int index = 0;
@@ -222,7 +227,7 @@ MyString operator+(const char *t2, const MyString &t1)
 
 	return MyString(temp);
 }
-
+//----------------------------------------------------------------------------------------
 istream& operator>>(istream& in, MyString &t)
 {
 	char* temp = new char[1000];
@@ -235,14 +240,14 @@ istream& operator>>(istream& in, MyString &t)
 	delete[] temp;
 	return in;
 }
-
+//----------------------------------------------------------------------------------------
 ostream& operator<<(ostream& out, MyString &t)
 {
 	out << t.symbols;
 
 	return out;
 }
-
+//----------------------------------------------------------------------------------------
 bool operator==(const MyString &t1, const MyString &t2)
 {
 	int size = 0;
@@ -264,13 +269,12 @@ bool operator==(const MyString &t1, const MyString &t2)
 	else
 		return true;
 }
-
+//----------------------------------------------------------------------------------------
 bool operator!=(const MyString &t1, const MyString &t2)
 {
 	return !(t1 == t2);
 }
-
-
+//----------------------------------------------------------------------------------------
 bool operator>(const MyString &t1, const MyString &t2)
 {
 	int size = 0;
@@ -292,13 +296,12 @@ bool operator>(const MyString &t1, const MyString &t2)
 	else
 		return true;
 }
-
+//----------------------------------------------------------------------------------------
 bool operator<(const MyString &t1, const MyString &t2)
 {
 	return !(t1 > t2);
 }
-
-
+//----------------------------------------------------------------------------------------
 bool operator>=(const MyString &t1, const MyString &t2)
 {
 	int size = 0;
@@ -323,8 +326,9 @@ bool operator>=(const MyString &t1, const MyString &t2)
 	else
 		return true;
 }
-
+//----------------------------------------------------------------------------------------
 bool operator<=(const MyString & t1, const MyString & t2)
 {
 	return !(t1 >= t2);
 }
+//----------------------------------------------------------------------------------------
