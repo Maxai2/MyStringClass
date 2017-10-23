@@ -65,5 +65,11 @@ public:
 		return *this;
 	}
 
-	MyString operator=(MyString &&t1);
+	MyString operator=(MyString &&str)
+	{
+		delete this->symbols;
+		symbols = new char;
+		*symbols = *str.symbols;
+		return *this;
+	}
 };

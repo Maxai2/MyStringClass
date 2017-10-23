@@ -35,9 +35,9 @@ MyString::MyString(MyString & str)
 	memcpy(this->symbols, str.symbols, sizeof(str.symbols));
 }
 //----------------------------------------------------------------------------------------
-MyString::MyString(MyString && str)
+MyString::MyString(MyString && str) : symbols(str.symbols)
 {
-
+	str.symbols = nullptr;
 }
 //----------------------------------------------------------------------------------------
 int MyString::length()
