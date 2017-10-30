@@ -38,6 +38,7 @@ MyString::MyString(MyString & str)
 MyString::MyString(MyString && str) : symbols(str.symbols)
 {
 	str.symbols = nullptr;
+	cout << "Move" << endl;
 }
 //----------------------------------------------------------------------------------------
 int MyString::length()

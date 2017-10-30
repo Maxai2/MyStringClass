@@ -1,9 +1,19 @@
 #include "Mystring.h"
+#include "Exception.h"
 
 void main()
 {
 	MyString str;
 	MyString str2("text");
+
+	try
+	{
+		cout << str2[2] << endl;
+	}
+	catch (const MyException &ex)
+	{
+		cout << ex.what() << endl;
+	}
 	char s[1000] = "aweergerg";
 	MyString str3(s);
 	str = "asdf";

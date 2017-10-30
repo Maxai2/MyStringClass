@@ -1,6 +1,8 @@
 ﻿#include <iostream>
 #include <string>
 
+#include "Exception.h"
+
 using namespace std;
 
 class MyString
@@ -14,7 +16,7 @@ public:
 	MyString(string str);
 	//Конструктор копирования
 	MyString(MyString &str);
-    //Конструктор перемещения
+	//Конструктор перемещения
 	MyString(MyString &&str);
 	//Деструктор
 	~MyString() { delete[] symbols; }
@@ -53,7 +55,10 @@ public:
 
 	char& operator[](const int index)
 	{
-		return this->symbols[index];
+		if (index >= 0 && index < _length)
+			return this->symbols[index];
+		else
+			throw IndexException("This index is not allowed", index);
 	}
 
 	MyString& operator=(const MyString &str)
@@ -65,7 +70,7 @@ public:
 		return *this;
 	}
 
-	MyString operator=(MyString &&str)
+	MyString& operator=(const MyString &&str)
 	{
 		delete this->symbols;
 		symbols = new char;
